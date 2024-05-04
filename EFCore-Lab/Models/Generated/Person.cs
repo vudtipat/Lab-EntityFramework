@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EFCore_Lab.Models;
 
 public partial class Person
 {
+    [Key]
     public int? PersonId { get; set; }
 
     public string? LastName { get; set; }

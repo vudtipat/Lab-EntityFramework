@@ -26,7 +26,7 @@ public partial class DemoContext : DbContext
     {
         modelBuilder.Entity<Person>(entity =>
         {
-            entity.HasNoKey();
+            modelBuilder.Entity<Person>().HasKey(p => p.PersonId);
 
             entity.Property(e => e.Address)
                 .HasMaxLength(255)
