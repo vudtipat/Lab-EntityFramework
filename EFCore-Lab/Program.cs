@@ -41,20 +41,35 @@ class Program
 
         #endregion
 
-        #region Add Product Section
+        #region Get Product Section
 
-        var products = pizzaContext.Products
-                .Where(p => p.Price > 300)
-                .OrderBy(p => p.Name);
+        //var products = pizzaContext.Products
+        //        .Where(p => p.Price > 300)
+        //        .OrderBy(p => p.Name);
 
-        foreach(var product in products)
+        //foreach(var product in products)
+        //{
+        //    Console.WriteLine("============================");
+        //    Console.WriteLine($"ID: {product.Id}");
+        //    Console.WriteLine($"Name: {product.Name}");
+        //    Console.WriteLine($"Price: {product.Price}");
+        //    Console.WriteLine("============================");
+        //}
+
+        #endregion
+
+        #region Update Product Section
+
+        var product = pizzaContext.Products
+                .Where(p => p.Id == 1)
+                .FirstOrDefault();
+
+        if(product is not null)
         {
-            Console.WriteLine("============================");
-            Console.WriteLine($"ID: {product.Id}");
-            Console.WriteLine($"Name: {product.Name}");
-            Console.WriteLine($"Price: {product.Price}");
-            Console.WriteLine("============================");
+            product.Price = 100M;
         }
+
+        pizzaContext.SaveChanges();
 
         #endregion
     }
