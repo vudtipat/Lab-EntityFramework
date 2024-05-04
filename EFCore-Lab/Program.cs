@@ -14,30 +14,47 @@ class Program
 
         Console.WriteLine("Hello, world!");
 
-        #region Add Product Section
-
         // we use using because it ensure that PizzaContext it will be disposed off when done use it.
         using PizzaContext pizzaContext = new PizzaContext();
 
-        Product hawaiiantPizza = new Product()
+        #region Add Product Section
+
+        //Product hawaiiantPizza = new Product()
+        //{
+        //    Name = "Deluxe Hawaiint Pizza1",
+        //    Price = 399M
+        //};
+
+        //Product deluxeMeatPizza = new Product()
+        //{
+        //    Name = "Deluxe Meat Pizza1",
+        //    Price = 439M
+        //};
+
+        //pizzaContext.Add(hawaiiantPizza);
+        //pizzaContext.Products.Add(deluxeMeatPizza);
+
+        //// use SaveChanges() to persist the change to the database
+        //pizzaContext.SaveChanges();
+
+        //Console.WriteLine("Done!");
+
+        #endregion
+
+        #region Add Product Section
+
+        var products = pizzaContext.Products
+                .Where(p => p.Price > 300)
+                .OrderBy(p => p.Name);
+
+        foreach(var product in products)
         {
-            Name = "Deluxe Hawaiint Pizza1",
-            Price = 399M
-        };
-
-        Product deluxeMeatPizza = new Product()
-        {
-            Name = "Deluxe Meat Pizza1",
-            Price = 439M
-        };
-
-        pizzaContext.Add(hawaiiantPizza);
-        pizzaContext.Products.Add(deluxeMeatPizza);
-
-        // use SaveChanges() to persist the change to the database
-        pizzaContext.SaveChanges();
-
-        Console.WriteLine("Done!");
+            Console.WriteLine("============================");
+            Console.WriteLine($"ID: {product.Id}");
+            Console.WriteLine($"Name: {product.Name}");
+            Console.WriteLine($"Price: {product.Price}");
+            Console.WriteLine("============================");
+        }
 
         #endregion
     }
