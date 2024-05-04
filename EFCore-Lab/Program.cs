@@ -60,13 +60,28 @@ class Program
 
         #region Update Product Section
 
+        //var product = pizzaContext.Products
+        //        .Where(p => p.Id == 1)
+        //        .FirstOrDefault();
+
+        //if(product is not null)
+        //{
+        //    product.Price = 100M;
+        //}
+
+        //pizzaContext.SaveChanges();
+
+        #endregion
+
+        #region Remove Product Section
+
         var product = pizzaContext.Products
                 .Where(p => p.Id == 1)
                 .FirstOrDefault();
 
-        if(product is not null)
+        if (product is not null)
         {
-            product.Price = 100M;
+            pizzaContext.Remove(product);
         }
 
         pizzaContext.SaveChanges();
