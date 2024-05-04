@@ -10,6 +10,20 @@ class Program
         // use this command to reverse exist db to code by use this command `dotnet ef dbcontext scaffold "connectionString" Microsoft.EntityFrameworkCore.SqlServer --context-dir contextDirProj --output-dir TableModelDirProj --context-namespace ProjNameSpaceContext --namespace ProjNameSpace`
         // example `dotnet ef dbcontext scaffold "Server=ip;Database=Demo;User Id=usr;Password=pwd;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data --output-dir Models/Generated --context-namespace EFCore_Lab.Data --namespace EFCore_Lab.Models`
 
+        using DemoContext demoContext = new DemoContext();
+
+        Person person1 = new Person()
+        {
+            PersonId = 1,
+            FirstName = "Vudtipat",
+            LastName = "Saish",
+            Address = "123 m.1 t.tumbon a.aumpher",
+            City = "Chonburi"
+        };
+
+        demoContext.Add(person1);
+
+        demoContext.SaveChanges();
 
         #endregion
 
