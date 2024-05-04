@@ -6,16 +6,24 @@ class Program
     static void Main(string[] args)
     {
 
+        #region migrate db from exist db to code
+        // use this command to reverse exist db to code by use this command `dotnet ef dbcontext scaffold "connectionString" Microsoft.EntityFrameworkCore.SqlServer --context-dir contextDirProj --output-dir TableModelDirProj --context-namespace ProjNameSpaceContext --namespace ProjNameSpace`
+        // example `dotnet ef dbcontext scaffold "Server=ip;Database=Demo;User Id=usr;Password=pwd;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data --output-dir Models/Generated --context-namespace EFCore_Lab.Data --namespace EFCore_Lab.Models`
+
+
+        #endregion
+
+        #region migrate db from code to db
+
         // we can use dotnet-ef to manage binding db by install with command `dotnet tool install -g dotnet-ef`
         // to migrate ef core with project we can use this command  `dotnet ef migrations add InitialCreate`
         // to remove migration we can use this command `dotnet ef migrations remove`
         // to migrade our code to database we can use this command `dotnet ef database update` after create migrations
         // if we have update model or context we must run command `dotnet ef migrations add MessageToLog` and use `dotnet ef database update` to update database
 
-        Console.WriteLine("Hello, world!");
-
         // we use using because it ensure that PizzaContext it will be disposed off when done use it.
-        using PizzaContext pizzaContext = new PizzaContext();
+
+        //using PizzaContext pizzaContext = new PizzaContext();
 
         #region Add Product Section
 
@@ -75,16 +83,18 @@ class Program
 
         #region Remove Product Section
 
-        var product = pizzaContext.Products
-                .Where(p => p.Id == 1)
-                .FirstOrDefault();
+        //var product = pizzaContext.Products
+        //        .Where(p => p.Id == 1)
+        //        .FirstOrDefault();
 
-        if (product is not null)
-        {
-            pizzaContext.Remove(product);
-        }
+        //if (product is not null)
+        //{
+        //    pizzaContext.Remove(product);
+        //}
 
-        pizzaContext.SaveChanges();
+        //pizzaContext.SaveChanges();
+
+        #endregion
 
         #endregion
     }
